@@ -45,3 +45,6 @@ gem 'devise', '=4.6.1'
 gem 'omniauth', '=1.9.0'
 gem "geocoder", '=1.5.1'
 gem 'stripe'
+
+gem 'active_model_serializers', require: true
+gem 'koala'
