@@ -1,5 +1,6 @@
 class Api::V1::ReservationsController < ApplicationController
     before_action :authenticate_with_token!
+    before_action :set_reservation, only: [:approve, :decline]
 
     def create
         room = Room.find(params[:room_id])
@@ -37,9 +38,37 @@ class Api::V1::ReservationsController < ApplicationController
         end
     end
 
+    def reservations_by_room
+        reservations = Reservation.where(room_id: params[:id])
+        reservations = reservations.map {|r| ReservationSerializer.new(r, avatar_url: r.user.image) }
+        render json: {reservations: reservations, is_success: true}, status: :ok
+    end
+
+    def approve
+        if @reservation.room.user_id == current_user.id
+            charge(@reservation.room, @reservation)
+            render json: {is_success: true}, status: :ok
+        else
+            render json: { error: "No permission", is_success: false}, status: 404
+        end
+    end
+
+    def decline
+        if @reservation.room.user_id == current_user.id
+            @reservation.Declined!
+            render json: {is_success: true}, status: :ok
+        else
+            render json: { error: "No permission", is_success: false}, status: 404
+        end
+    end
+
     private
         def reservation_params
             params.require(:reservation).permit(:start_date, :end_date)
+        end
+
+        def set_reservation
+            @reservation = Reservation.find(params[:id])
         end
 
         def charge(room, reservation)
