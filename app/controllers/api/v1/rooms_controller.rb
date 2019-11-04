@@ -44,7 +44,7 @@ class Api::V1::RoomsController < ApplicationController
         )
 
         unavailable_dates = reservations.map { |r|
-                (r[:start_date].to_datetime...r[:end_date].to_datetime).map { |day| day.strftime("%Y-%m-%d")}
+                (r[:start_date].to_datetime..r[:end_date].to_datetime).map { |day| day.strftime("%Y-%m-%d")}
         }.flatten.to_set
 
         calendars = Calendar.where(
