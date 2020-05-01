@@ -1,5 +1,5 @@
 class RoomSerializer < ActiveModel::Serializer
-    attributes :id, :listing_name, :address, :home_type, :bed_room, :bath_room, :summary, :price, 
+    attributes :id, :listing_name, :address, :home_type, :accommodate, :bed_room, :bath_room, :summary, :price, 
         :active, :image, :unavailable_dates
 
     def unavailable_dates
