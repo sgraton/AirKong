@@ -119,6 +119,7 @@ GEM
       hashie (>= 3.4.6, < 3.7.0)
       rack (>= 1.6.2, < 3)
     orm_adapter (0.5.0)
+    pg (1.2.3)
     public_suffix (4.0.1)
     puma (3.12.4)
     rack (2.2.2)
@@ -171,7 +172,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sqlite3 (1.4.1)
     stripe (5.7.1)
     thor (0.20.3)
     thread_safe (0.3.6)
@@ -196,12 +196,12 @@ DEPENDENCIES
   koala
   listen (>= 3.0.5, < 3.2)
   omniauth (= 1.9.0)
+  pg
   puma (~> 3.12)
   rack-cors
   rails (~> 6.0.0.rc2)
   spring
   spring-watcher-listen (~> 2.0.0)
-  sqlite3 (~> 1.4)
   stripe
   tzinfo-data
 
