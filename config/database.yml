@@ -12,4 +12,4 @@ test:
   database: airpikachu_test
 
 production:
-  url: <%= ENV['AIRPIKACHU_URL'] %>
+  url: <%= ENV['AIRPIKACHU_DB_URL'] %>
