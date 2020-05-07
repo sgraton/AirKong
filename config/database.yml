@@ -12,5 +12,5 @@ test:
   database: airpikachu_test
 
 production:
-  adapter: postgresql
+  <<: *default
   url: <%= ENV['AIRPIKACHU_DB_URL'] %>
