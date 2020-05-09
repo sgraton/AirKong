@@ -28,8 +28,10 @@ class Api::V1::RoomsController < ApplicationController
             }
         end
 
+        image_url = url_for(room.cover_photo).gsub("https://mysterious-dusk-26630.herokuapp.com", "https://limitless-harbor-80092.herokuapp.com")
+
         render json: {
-            rooms: rooms.map {|room| room.attributes.merge(image: "https://limitless-harbor-80092.herokuapp.com" + rails_blob_path(room.cover_photo), instant: room.instant != "Request")},
+            rooms: rooms.map {|room| room.attributes.merge(image: image_url, instant: room.instant != "Request")},
             is_success: true
         }, status: :ok
     end
@@ -57,7 +59,7 @@ class Api::V1::RoomsController < ApplicationController
         if !room.nil?
             room_serializer = RoomSerializer.new(
                 room,
-                image: "https://limitless-harbor-80092.herokuapp.com" + rails_blob_path(room.cover_photo),
+                image: url_for(room.cover_photo),
                 unavailable_dates: unavailable_dates
             )
             render json: {room: room_serializer, is_success: true}, statut: :ok
@@ -69,7 +71,7 @@ class Api::V1::RoomsController < ApplicationController
     def your_listings
         rooms = current_user.rooms
         render json: {
-            rooms: rooms.map {|r| r.attributes.merge(image: "https://limitless-harbor-80092.herokuapp.com" + rails_blob_path(r.cover_photo), instant: r.instant != "Request")},
+            rooms: rooms.map {|r| r.attributes.merge(image: url_for(r.cover_photo), instant: r.instant != "Request")},
             is_success: true
         }, status: :ok
     end
