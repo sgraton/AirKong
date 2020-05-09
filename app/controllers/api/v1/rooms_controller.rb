@@ -57,7 +57,7 @@ class Api::V1::RoomsController < ApplicationController
         if !room.nil?
             room_serializer = RoomSerializer.new(
                 room,
-                image: url_for(room.cover_photo, :only_path: true),
+                image: url_for(room.cover_photo, :only_path => true),
                 unavailable_dates: unavailable_dates
             )
             render json: {room: room_serializer, is_success: true}, statut: :ok
