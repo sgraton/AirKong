@@ -28,10 +28,8 @@ class Api::V1::RoomsController < ApplicationController
             }
         end
 
-        image_url = url_for(room.cover_photo).gsub("https://mysterious-dusk-26630.herokuapp.com", "https://limitless-harbor-80092.herokuapp.com")
-
         render json: {
-            rooms: rooms.map {|room| room.attributes.merge(image: image_url, instant: room.instant != "Request")},
+            rooms: rooms.map {|room| room.attributes.merge(image: url_for(room.cover_photo), instant: room.instant != "Request")},
             is_success: true
         }, status: :ok
     end

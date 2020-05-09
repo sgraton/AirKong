@@ -44,6 +44,7 @@ gem 'devise', '4.7.1'
 gem 'omniauth', '=1.9.0'
 gem "geocoder", '=1.5.1'
 gem 'stripe'
+gem "aws-sdk-s3", require: false
 
 gem 'active_model_serializers', require: true
 gem 'koala'
