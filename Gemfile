@@ -41,7 +41,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise', '4.7.1'
-gem 'omniauth', '=1.9.0'
+gem 'omniauth', '1.9.2'
 gem "geocoder", '1.6.1'
 gem 'stripe'
 gem "aws-sdk-s3", require: false
